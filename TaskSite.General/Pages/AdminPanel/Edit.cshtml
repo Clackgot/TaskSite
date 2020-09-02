@@ -1,0 +1,75 @@
+﻿@page
+@model TaskSite.General.Pages.AdminPanel.EditModel
+
+@{
+    ViewData["Title"] = "Редактировать";
+}
+
+<h1>Редактировать</h1>
+
+<h4>@Model.User.Surname @Model.User.Name</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="User.Id" />
+            <div class="form-group">
+                <label asp-for="User.Name" class="control-label">Имя</label>
+                <input asp-for="User.Name" class="form-control" />
+                <span asp-validation-for="User.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Surname" class="control-label">Фамилия</label>
+                <input asp-for="User.Surname" class="form-control" />
+                <span asp-validation-for="User.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Middlename" class="control-label">Отчество</label>
+                <input asp-for="User.Middlename" class="form-control" />
+                <span asp-validation-for="User.Middlename" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Email" class="control-label">Email</label>
+                <input type="email" asp-for="User.Email" class="form-control" />
+                <span asp-validation-for="User.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Login" class="control-label">Логин</label>
+                <input asp-for="User.Login" class="form-control" />
+                <span asp-validation-for="User.Login" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Password" class="control-label">Пароль</label>
+                <input asp-for="User.Password" class="form-control" />
+                <span asp-validation-for="User.Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="User.Role" class="control-label">Роль</label>
+                <select asp-for="User.Role" class="form-control">
+                    @if (Model.User.Role == Models.UserRole.User)
+                    {
+                        <option value="0" selected>Пользователь</option>
+                        <option value="1">Администратор</option>
+                    }
+                    else if (Model.User.Role == Models.UserRole.Admin)
+                    {
+                        <option value="0">Пользователь</option>
+                        <option value="1" selected>Администратор</option>
+                    }
+                </select>
+                <span asp-validation-for="User.Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
+                <a class="ml-2 btn btn-info" asp-page="./Users">Назад</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
