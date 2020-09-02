@@ -19,7 +19,7 @@ namespace TaskSite.General.Pages.AdminPanel
         }
 
         [BindProperty]
-        public User User { get; set; }
+        public new User User { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
